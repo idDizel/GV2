@@ -27,7 +27,7 @@ public class Generator : MonoBehaviour {
         }
         clone.Hexagon.SetActive(false);
         this.GeneratePlayers(2);
-        this.GenerateArea();
+        //this.GenerateArea();
 	}
 
     void GeneratePlayers(int count)

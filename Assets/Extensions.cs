@@ -7,13 +7,27 @@ using System.Text;
     {
         public static IEnumerable<Node> GetNeighbors(this List<Node> nodes, Point p)
         {
+            Node node = nodes.Where(nd => nd.Point == p).FirstOrDefault();
             List<Node> neighbors = new List<Node>();
-            neighbors.Add(nodes.Where(pt => pt.Point.X == p.X && pt.Point.Y == p.Y - 1).FirstOrDefault());   //X, Y-1
-            neighbors.Add(nodes.Where(pt => pt.Point.X == p.X + 1 && pt.Point.Y == p.Y - 1).FirstOrDefault()); //X+1, Y-1
+            
             neighbors.Add(nodes.Where(pt => pt.Point.X == p.X - 1 && pt.Point.Y == p.Y).FirstOrDefault());     //X-1, Y
-            neighbors.Add(nodes.Where(pt => pt.Point.X == p.X + 1 && pt.Point.Y == p.Y - 1).FirstOrDefault()); //X+1, Y
-            neighbors.Add(nodes.Where(pt => pt.Point.X == p.X && pt.Point.Y == p.Y + 1).FirstOrDefault());   //X, Y+1
-            neighbors.Add(nodes.Where(pt => pt.Point.X == p.X + 1 && pt.Point.Y == p.Y + 1).FirstOrDefault()); //X+1, Y+1
+            neighbors.Add(nodes.Where(pt => pt.Point.X == p.X + 1 && pt.Point.Y == p.Y).FirstOrDefault()); //X+1, Y
+            if (node.NodeType == OffsetType.Odd)
+            {
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X && pt.Point.Y == p.Y - 1).FirstOrDefault());   //X, Y-1
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X + 1 && pt.Point.Y == p.Y - 1).FirstOrDefault()); //X+1, Y-1
+
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X && pt.Point.Y == p.Y + 1).FirstOrDefault());   //X, Y+1
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X + 1 && pt.Point.Y == p.Y + 1).FirstOrDefault()); //X+1, Y+1
+            }
+            else
+            {
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X - 1 && pt.Point.Y == p.Y - 1).FirstOrDefault());   //X-1, Y-1
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X + 1 && pt.Point.Y == p.Y - 1).FirstOrDefault()); //X, Y-1
+
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X - 1 && pt.Point.Y == p.Y + 1).FirstOrDefault());   //X-1, Y+1
+                neighbors.Add(nodes.Where(pt => pt.Point.X == p.X && pt.Point.Y == p.Y + 1).FirstOrDefault()); //X, Y+1
+            }
             return neighbors.OfType<Node>();
         }
     }

@@ -22,7 +22,7 @@ public class Generator : MonoBehaviour {
             deltaX = i % 2 == 0 ? 0 : clone.OffsetX;
             for (int j = 0; j < matrixSize; j++)
             {
-                hexaGrid.Add(new Node(){Point = new Point(){X=j, Y = i}, Hexagon=(GameObject)GameObject.Instantiate(clone.Hexagon, new Vector3(deltaX + j * clone.OffsetX * 2, -(i * clone.OffsetY * 3), 0), Quaternion.identity)});
+                hexaGrid.Add(new Node(){NodeType = deltaX == 0 ? OffsetType.Even: OffsetType.Odd,Point = new Point(){X=j, Y = i}, Hexagon=(GameObject)GameObject.Instantiate(clone.Hexagon, new Vector3(deltaX + j * clone.OffsetX * 2, -(i * clone.OffsetY * 3), 0), Quaternion.identity)});
             }
         }
         clone.Hexagon.SetActive(false);
@@ -46,7 +46,7 @@ public class Generator : MonoBehaviour {
                 PlayersL.Add(hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Owner);
         }
 
-        var n = hexaGrid.GetNeighbors(new Point() { X = 0, Y = 0 });
+        var n = hexaGrid.GetNeighbors(new Point() { X = 1, Y = 1 });
         foreach (var nn in n)
         {
             Debug.Log(nn.Point);

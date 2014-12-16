@@ -44,7 +44,12 @@ public class Generator : MonoBehaviour {
                 hexaGrid.Where(p=>p.Point.Equals(Players[i])).FirstOrDefault().Hexagon.GetComponent<MeshRenderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
                 hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Owner = new Player() { Color = hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Hexagon.GetComponent<MeshRenderer>().material.color, Name = "Player" + i };
                 PlayersL.Add(hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Owner);
+        }
 
+        var n = hexaGrid.GetNeighbors(new Point() { X = 0, Y = 0 });
+        foreach (var nn in n)
+        {
+            Debug.Log(nn.Point);
         }
     }
     
@@ -55,7 +60,6 @@ public class Generator : MonoBehaviour {
         {
             foreach(var p in PlayersL)
             {
-                
             }
         }
     }
@@ -64,4 +68,7 @@ public class Generator : MonoBehaviour {
     {
 
     }
+
+
+    
 }

@@ -35,5 +35,10 @@ public struct Point
     {
         return !p1.Equals(p2);
     }
+
+    public override string ToString()
+    {
+        return String.Format("X:{0}; Y:{1}", this.X, this.Y);
+    }
 }
 

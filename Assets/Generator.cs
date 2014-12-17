@@ -30,20 +30,31 @@ public class Generator : MonoBehaviour {
         //this.GenerateArea();
 	}
 
+    void GenerateCapitals(int count)
+    {
+        
+    }
+
     void GeneratePlayers(int count)
     {
         for (int i = 0; i < count; i++)
         {
+                
+
+            while(true)
+            {
                 int x = Random.Range(0, matrixSize);
                 int y = Random.Range(0, matrixSize);
 
-                if (Players.Where(p => p.X == x && p.Y == y).Count() == 0)
+                if(hexaGrid.CanBuildCapital(new Point(){X =x, Y=y}))
                 {
                     Players[i] = new Point() { X = x, Y = y };
+                    hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Hexagon.GetComponent<MeshRenderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+                    hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Owner = new Player() { Color = hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Hexagon.GetComponent<MeshRenderer>().material.color, Name = "Player" + i };
+                    PlayersL.Add(hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Owner);
+                    break;
                 }
-                hexaGrid.Where(p=>p.Point.Equals(Players[i])).FirstOrDefault().Hexagon.GetComponent<MeshRenderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-                hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Owner = new Player() { Color = hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Hexagon.GetComponent<MeshRenderer>().material.color, Name = "Player" + i };
-                PlayersL.Add(hexaGrid.Where(p => p.Point.Equals(Players[i])).FirstOrDefault().Owner);
+            }
         }
 
         var n = hexaGrid.GetNeighbors(new Point() { X = 1, Y = 1 });

@@ -43,5 +43,8 @@ using System.Text;
             }
         }
 
-
+        public static IEnumerable<Node> InitializeGrid<T>(this T node) where T: INodeObject
+        {
+            return null;
+        }
     }

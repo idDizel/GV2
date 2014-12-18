@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
-public class HexagonObject
+public class HexagonObject: INodeObject
 {
     public GameObject hex;
 
@@ -32,7 +34,7 @@ public class HexagonObject
     public HexagonObject(int hexagonRadius)
     {
         this.Radius = hexagonRadius;
-        this.Hexagon = new GameObject("Hexagon");
+        this.NodeObject = new GameObject("Hexagon");
         Mesh meshFilter = this.Hexagon.AddComponent<MeshFilter>().mesh;
         this.Hexagon.AddComponent<MeshRenderer>();
 
@@ -73,5 +75,36 @@ public class HexagonObject
 		#endregion
 
 		meshFilter.RecalculateNormals();
+    }
+
+    public GameObject ObjectInitializer(Vector3 vector)
+    {
+        return (GameObject)GameObject.Instantiate(NodeObject, vector, Quaternion.identity);
+    }
+
+    public List<Node> GridGenerator(int size, Func<Vector3, GameObject> initializer)
+    {
+        List<Node> nodes = new List<Node>();
+        float deltaX = 0;
+        for (int i = 0; i < size; i++)
+        {
+            deltaX = i % 2 == 0 ? 0 : OffsetX;
+            for (int j = 0; j < size; j++)
+            {
+                nodes.Add(new Node() { NodeType = deltaX == 0 ? OffsetType.Even : OffsetType.Odd, Point = new Point() { X = j, Y = i }, Hexagon = initializer(new Vector3(deltaX + j * OffsetX * 2, -(i * OffsetY * 3), 0)) });
+            }
+        }
+        return nodes;
+    }
+
+    public void MeshInitializer()
+    {
+
+    }
+
+    public GameObject NodeObject
+    {
+        get;
+        set;
     }
 }

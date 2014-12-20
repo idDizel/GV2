@@ -7,8 +7,6 @@ namespace GV2.Test
     [TestFixture]
     public class MapGenerationTests
     {
-        private List<Node> nodes;
-
         [TestFixtureSetUp]
         public void Initialize()
         {

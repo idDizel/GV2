@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 
-public interface INodeObject
+namespace GV2.Core.Enums
 {
-    GameObject NodeObject { get; set; }
+    public enum PointType
+    {
+        Odd,
+        Even
+    }
 }

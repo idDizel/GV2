@@ -47,6 +47,7 @@
     <Compile Include="Implementation\Node.cs" />
     <Compile Include="Implementation\OffsetHorizontalGrid.cs" />
     <Compile Include="Implementation\Player.cs" />
+    <Compile Include="Implementation\SimpleTerritoryGenerator.cs" />
     <Compile Include="Interfaces\IGridGenerator.cs" />
     <Compile Include="Interfaces\INode.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />

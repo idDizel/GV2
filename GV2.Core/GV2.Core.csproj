@@ -44,10 +44,14 @@
     <Compile Include="Enums\PointType.cs" />
     <Compile Include="Implementation\BaseShape.cs" />
     <Compile Include="Implementation\HexagonShape.cs" />
-    <Compile Include="Implementation\OffsetHorizontalMap.cs" />
-    <Compile Include="Interfaces\IMap.cs" />
+    <Compile Include="Implementation\Node.cs" />
+    <Compile Include="Implementation\OffsetHorizontalGrid.cs" />
+    <Compile Include="Implementation\Player.cs" />
+    <Compile Include="Interfaces\INodeGrid.cs" />
     <Compile Include="Interfaces\INode.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IShape.cs" />
+    <Compile Include="Interfaces\ITerritoryGenerator.cs" />
     <Compile Include="MapFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structures\Point.cs" />

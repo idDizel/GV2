@@ -9,18 +9,18 @@ using UnityEngine;
 
 namespace GV2.Core.Implementation
 {
-    public class OffsetHorizontalMap: IMap<IShape>
+    public class OffsetHorizontalGrid: INodeGrid<IShape>
     {
-        public Dictionary<Point, GameObject> Generate(int width, int height, IShape shape)
+        public Dictionary<Point, INode> Generate(int width, int height, IShape shape)
         {
-            Dictionary<Point, GameObject> nodes = new Dictionary<Point, GameObject>();
+            Dictionary<Point, INode> nodes = new Dictionary<Point, INode>();
             float deltaX = 0;
             for (int i = 0; i < height; i++)
             {
                 deltaX = i % 2 == 0 ? 0 : shape.OffsetX;
                 for (int j = 0; j < width; j++)
                 {
-                    nodes.Add(new Point(j, i, deltaX == 0 ? PointType.Even : PointType.Odd), shape.GetInstance(new Vector3(deltaX + j * shape.OffsetX * 2, -(i * shape.OffsetY * 3), 0)));
+                    nodes.Add(new Point(j, i, deltaX == 0 ? PointType.Even : PointType.Odd), new Node() { NodeObject = shape.GetInstance(new Vector3(deltaX + j * shape.OffsetX * 2, -(i * shape.OffsetY * 3), 0)) });
                 }
             }
             return nodes;

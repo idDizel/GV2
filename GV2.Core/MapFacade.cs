@@ -11,14 +11,14 @@ namespace GV2.Core
 {
     public class MapFacade
     {
-        private IMap<IShape> map;
-        private HexagonShape shape;
+        private INodeGrid<IShape> map;
+        private IShape shape;
 
-        public Dictionary<Point, GameObject> Nodes { get; set; }
+        public Dictionary<Point, INode> Nodes { get; set; }
 
         public MapFacade()
         {
-            this.map = new OffsetHorizontalMap();
+            this.map = new OffsetHorizontalGrid();
             this.shape = new HexagonShape(2);
         }
 

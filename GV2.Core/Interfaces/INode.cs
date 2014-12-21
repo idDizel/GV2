@@ -10,6 +10,6 @@ namespace GV2.Core.Interfaces
     public interface INode
     {
         GameObject NodeObject { get; set; }
-        Point Position { get; set; }
+        IPlayer Owner { get; set; }
     }
 }

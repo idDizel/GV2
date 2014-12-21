@@ -9,9 +9,9 @@ using UnityEngine;
 
 namespace GV2.Core.Implementation
 {
-    public class OffsetHorizontalGrid: INodeGrid<IShape>
+    public class OffsetHorizontalGrid: IGridGenerator<IShape>
     {
-        public Dictionary<Point, INode> Generate(int width, int height, IShape shape)
+        public Dictionary<Point, INode> GenerateGrid(int width, int height, IShape shape)
         {
             Dictionary<Point, INode> nodes = new Dictionary<Point, INode>();
             float deltaX = 0;

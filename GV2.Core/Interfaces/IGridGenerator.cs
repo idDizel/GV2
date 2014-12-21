@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace GV2.Core.Interfaces
 {
-    public interface INodeGrid<T> where T: IShape
+    public interface IGridGenerator<T> where T: IShape
     {
-        Dictionary<Point, INode> Generate(int width, int height, T shape);
+        Dictionary<Point, INode> GenerateGrid(int width, int height, T shape);
         IEnumerable<Point> GetNeighbors(Point point);
     }
 }

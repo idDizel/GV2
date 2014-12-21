@@ -11,7 +11,7 @@ namespace GV2.Core
 {
     public class MapFacade
     {
-        private INodeGrid<IShape> map;
+        private IGridGenerator<IShape> map;
         private IShape shape;
 
         public Dictionary<Point, INode> Nodes { get; set; }
@@ -25,7 +25,7 @@ namespace GV2.Core
         public void GenetrateGrid(int width, int height)
         {
             this.shape.InitializeMesh();
-            this.Nodes = this.map.Generate(width, height, shape);
+            this.Nodes = this.map.GenerateGrid(width, height, shape);
             this.shape.DestroyNode();
         }
     }

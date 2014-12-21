@@ -47,7 +47,7 @@
     <Compile Include="Implementation\Node.cs" />
     <Compile Include="Implementation\OffsetHorizontalGrid.cs" />
     <Compile Include="Implementation\Player.cs" />
-    <Compile Include="Interfaces\INodeGrid.cs" />
+    <Compile Include="Interfaces\IGridGenerator.cs" />
     <Compile Include="Interfaces\INode.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IShape.cs" />

@@ -12,21 +12,30 @@ namespace GV2.Core.Implementation
     {
         public void GenerateCapitals(Dictionary<Structures.Point, INode> nodes, IEnumerable<IPlayer> players, IGridGenerator<IShape> gridGenerator)
         {
-            
+            System.Random rnd = new System.Random();
             foreach(var player in players)
             {
-                Point point = nodes.Keys.Where(k => k.X == UnityEngine.Random.Range(0, 5) && k.Y == UnityEngine.Random.Range(0, 5)).FirstOrDefault();
-                var neighbors = gridGenerator.GetNeighbors(point);
-                var neighborsKeys = nodes.Keys.Intersect(neighbors);
-                nodes[point].Owner = player;
-                nodes[point].NodeObject.GetComponent<MeshRenderer>().material.color = player.Color;
-                nodes.Where(n => neighborsKeys.Contains(n.Key)).ToList().ForEach(n=>
+                while (true)
+                {
+                    int X = rnd.Next(0, 5);
+                    int Y = rnd.Next(0, 5);
+                    Point point = nodes.Keys.Where(k => k.X == X && k.Y == Y).FirstOrDefault();
+                    if (nodes[point].Owner != null) continue;
+                    var neighbors = gridGenerator.GetNeighbors(point);
+                    var neighborsKeys = nodes.Keys.Intersect(neighbors);
+                    if (nodes.Where(n => neighborsKeys.Contains(n.Key) && n.Value.Owner == null).Count() == neighborsKeys.Count())
                     {
-                        //Debug.Log(n.Key.ToString());
-                        n.Value.Owner = player;
-                        n.Value.NodeObject.GetComponent<MeshRenderer>().material.color = player.Color;
-                        n.Value.NodeObject.GetComponent<MeshFilter>().mesh.RecalculateNormals();
-                    });
+                        nodes[point].Owner = player;
+                        nodes[point].NodeObject.GetComponent<MeshRenderer>().material.color = player.Color;
+                        //nodes.Where(n => neighborsKeys.Contains(n.Key)).ToList().ForEach(n =>
+                        //    {
+                        //        n.Value.Owner = player;
+                        //        n.Value.NodeObject.GetComponent<MeshRenderer>().material.color = player.Color;
+                        //        n.Value.NodeObject.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+                        //    });
+                        break;
+                    }
+                }
             }
         }
 

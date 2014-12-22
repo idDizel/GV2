@@ -33,7 +33,14 @@ namespace GV2.Core
 
         public void GeneratePlayers()
         {
-            this.territoryGenerator.GenerateCapitals(Nodes, new Player[] { new Player() { Name = "Player1", Color = new Color(0.5f, 0.77f, 0.33f) } }, gridGenerator);
+            this.territoryGenerator.GenerateCapitals
+                (Nodes, 
+                new Player[] 
+                { 
+                    new Player() { Name = "Player1", Color = new Color(0.5f, 0.77f, 0.33f) },
+                    new Player() { Name = "Player2", Color = new Color(0.22f, 0.11f, 0.46f)}
+                }, 
+                gridGenerator);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace GV2.Core.Structures
 
         public override string ToString()
         {
-            return String.Format("X:{0}; Y:{1}, Z:{2}", this.X, this.Y, this.Z);
+            return String.Format("X:{0}; Y:{1}, Z:{2}, PointType:{3}", this.X, this.Y, this.Z, this.PointType.ToString());
         }
     }
 }

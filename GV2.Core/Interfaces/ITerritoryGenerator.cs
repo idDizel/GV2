@@ -8,7 +8,7 @@ namespace GV2.Core.Interfaces
 {
     public interface ITerritoryGenerator
     {
-        void GenerateCapitals(Dictionary<Point, INode> nodes, IEnumerable<IPlayer> players);
-        void GenerateTerritory(Dictionary<Point, INode> nodes, IEnumerable<IPlayer> players);
+        void GenerateCapitals(Dictionary<Point, INode> nodes, IEnumerable<IPlayer> players, IGridGenerator<IShape> gridGenerator);
+        void GenerateTerritory(Dictionary<Point, INode> nodes, IEnumerable<IPlayer> players, IGridGenerator<IShape> gridGenerator);
     }
 }

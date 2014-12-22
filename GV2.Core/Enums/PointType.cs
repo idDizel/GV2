@@ -7,6 +7,7 @@ namespace GV2.Core.Enums
 {
     public enum PointType
     {
+        None = 0,
         Odd,
         Even
     }

@@ -11,22 +11,29 @@ namespace GV2.Core
 {
     public class MapFacade
     {
-        private IGridGenerator<IShape> map;
         private IShape shape;
+        private IGridGenerator<IShape> gridGenerator;
+        private ITerritoryGenerator territoryGenerator;
 
         public Dictionary<Point, INode> Nodes { get; set; }
 
         public MapFacade()
         {
-            this.map = new OffsetHorizontalGrid();
+            this.gridGenerator = new OffsetHorizontalGrid();
             this.shape = new HexagonShape(2);
+            this.territoryGenerator = new SimpleTerritoryGenerator();
         }
 
         public void GenetrateGrid(int width, int height)
         {
             this.shape.InitializeMesh();
-            this.Nodes = this.map.GenerateGrid(width, height, shape);
+            this.Nodes = this.gridGenerator.GenerateGrid(width, height, shape);
             this.shape.DestroyNode();
+        }
+
+        public void GeneratePlayers()
+        {
+            this.territoryGenerator.GenerateCapitals(Nodes, new Player[] { new Player() { Name = "Player1", Color = new Color(0.5f, 0.77f, 0.33f) } }, gridGenerator);
         }
     }
 }
